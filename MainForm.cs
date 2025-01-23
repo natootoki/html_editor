@@ -43,7 +43,6 @@ class MainForm : Form
         </head>
         <body>
             <div id='editor' contenteditable='true'>
-                ここにテキストを入力してください。
             </div>
         </body>
         </html>";
