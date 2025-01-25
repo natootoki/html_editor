@@ -144,9 +144,11 @@ namespace SimpleHtmlEditor
             string htmlContent = HtmlEditorHelper.GetHtmlContent(webBrowser);
             if (HtmlEditorHelper.SaveHtmlAsFile(htmlContent, out currentFilePath))
             {
+                this.Text = string.Format("シンプルなHTMLエディタ - {0}", currentFilePath);
                 MessageBox.Show("HTMLが保存されました！");
             }
         }
+
 
         private void SaveOverwriteButton_Click(object sender, EventArgs e)
         {
@@ -154,6 +156,7 @@ namespace SimpleHtmlEditor
             if (!string.IsNullOrEmpty(currentFilePath))
             {
                 HtmlEditorHelper.SaveHtmlToFile(htmlContent, currentFilePath);
+                this.Text = string.Format("シンプルなHTMLエディタ - {0}", currentFilePath);
                 MessageBox.Show("現在のファイルに上書き保存しました！");
             }
             else
@@ -186,6 +189,21 @@ namespace SimpleHtmlEditor
             if (HtmlEditorHelper.LoadHtmlFromFile(out loadedHtml, out currentFilePath))
             {
                 HtmlEditorHelper.LoadHtmlToWebBrowser(webBrowser, loadedHtml);
+                this.Text = string.Format("シンプルなHTMLエディタ - {0}", currentFilePath);
+            }
+        }
+
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            string filePath = files.FirstOrDefault(file => Path.GetExtension(file).Equals(".html", StringComparison.OrdinalIgnoreCase));
+
+            if (filePath != null)
+            {
+                currentFilePath = filePath; // 開いたファイルのパスを保持
+                string htmlContent = File.ReadAllText(filePath);
+                HtmlEditorHelper.LoadHtmlToWebBrowser(webBrowser, htmlContent);
+                this.Text = string.Format("シンプルなHTMLエディタ - {0}", currentFilePath);
             }
         }
     }

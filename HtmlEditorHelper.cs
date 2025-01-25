@@ -16,7 +16,12 @@ namespace SimpleHtmlEditor
                 <title>HTML Editor</title>
                 <style>
                     body { font-family: Arial, sans-serif; padding: 10px; }
-                    #editor { border: 1px solid #ddd; min-height: 300px; padding: 10px; }
+                    #editor { 
+                        border: 1px solid #ddd; 
+                        min-height: 300px; 
+                        padding: 10px; 
+                        background-color: #ddd; /* 背景色を設定 */
+                    }
                 </style>
             </head>
             <body>
