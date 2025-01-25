@@ -192,19 +192,5 @@ namespace SimpleHtmlEditor
                 this.Text = string.Format("シンプルなHTMLエディタ - {0}", currentFilePath);
             }
         }
-
-        private void MainForm_DragDrop(object sender, DragEventArgs e)
-        {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            string filePath = files.FirstOrDefault(file => Path.GetExtension(file).Equals(".html", StringComparison.OrdinalIgnoreCase));
-
-            if (filePath != null)
-            {
-                currentFilePath = filePath; // 開いたファイルのパスを保持
-                string htmlContent = File.ReadAllText(filePath);
-                HtmlEditorHelper.LoadHtmlToWebBrowser(webBrowser, htmlContent);
-                this.Text = string.Format("シンプルなHTMLエディタ - {0}", currentFilePath);
-            }
-        }
     }
 }
