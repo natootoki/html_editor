@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SimpleHtmlEditor
@@ -46,11 +47,20 @@ namespace SimpleHtmlEditor
 
         private void InitializeButtons()
         {
+            // ボタンの共通スタイル
+            var buttonHeight = 40; // 高さを設定
+            var buttonMargin = new Padding(10); // ボタン間の余白を設定
+
             // 保存ボタン
             saveButton = new Button
             {
                 Text = "保存",
-                Dock = DockStyle.Bottom
+                Height = buttonHeight,
+                Dock = DockStyle.Bottom,
+                Margin = buttonMargin,
+                BackColor = System.Drawing.Color.LightBlue, // 背景色を設定
+                ForeColor = System.Drawing.Color.Black, // 文字色を設定
+                Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold) // フォントサイズとスタイルを設定
             };
             saveButton.Click += SaveButton_Click;
             this.Controls.Add(saveButton);
@@ -59,7 +69,12 @@ namespace SimpleHtmlEditor
             saveOverwriteButton = new Button
             {
                 Text = "上書き保存",
-                Dock = DockStyle.Bottom
+                Height = buttonHeight,
+                Dock = DockStyle.Bottom,
+                Margin = buttonMargin,
+                BackColor = System.Drawing.Color.LightGreen, // 背景色を設定
+                ForeColor = System.Drawing.Color.Black,
+                Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold)
             };
             saveOverwriteButton.Click += SaveOverwriteButton_Click;
             this.Controls.Add(saveOverwriteButton);
@@ -68,7 +83,12 @@ namespace SimpleHtmlEditor
             pasteImageButton = new Button
             {
                 Text = "クリップボード画像を貼り付ける",
-                Dock = DockStyle.Bottom
+                Height = buttonHeight,
+                Dock = DockStyle.Bottom,
+                Margin = buttonMargin,
+                BackColor = System.Drawing.Color.LightPink,
+                ForeColor = System.Drawing.Color.Black,
+                Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold)
             };
             pasteImageButton.Click += PasteImageButton_Click;
             this.Controls.Add(pasteImageButton);
@@ -77,7 +97,12 @@ namespace SimpleHtmlEditor
             loadHtmlButton = new Button
             {
                 Text = "HTMLファイルを読み込む",
-                Dock = DockStyle.Bottom
+                Height = buttonHeight,
+                Dock = DockStyle.Bottom,
+                Margin = buttonMargin,
+                BackColor = System.Drawing.Color.LightYellow,
+                ForeColor = System.Drawing.Color.Black,
+                Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold)
             };
             loadHtmlButton.Click += LoadHtmlButton_Click;
             this.Controls.Add(loadHtmlButton);
